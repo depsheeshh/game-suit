@@ -51,7 +51,7 @@ table {
 /* Suwit Jawa 2.0 */
 
 body {
-    background-image: url(img/wallpaperflare.com_wallpaper.jpg);
+    background-image: url(img/bg.gif);
     background-size: cover;
     font-family: arial;
 }
@@ -79,6 +79,7 @@ h1 {
     margin: 5px auto;
     background-color: rgb(255, 34, 4);
     background: linear-gradient(to bottom, rgb(249, 3, 208) 0%, rgb(245, 97, 4) 100%);
+    opacity: .8;
     position: relative;
     padding-top: 40px;
     box-sizing: border-box;
@@ -91,6 +92,7 @@ h1 {
     margin: 5px auto;
     background-color: rgb(39, 3, 201);
     background: linear-gradient(to bottom, rgb(69, 4, 234) 0%, rgb(5, 193, 245) 100%);
+    opacity: .8;
     position: relative;
     border-radius: 0 0 40px 40px;   
 }
