@@ -1,34 +1,161 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Suit</title>
+    <title>Game Suit ✊✋✌️ | Rock Paper Scissors</title>
+    <meta name="description" content="Game Suit (Batu Gunting Kertas) modern yang seru dan interaktif. Tantang komputer dan raih kemenangan!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Game Suit</h1>
-    <div class="container">
-        <div class="area-komputer">
-            <img src="img/batu.png" class="img-komputer">
-            <h2 class="score-computer">0</h2>
+
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header class="game-header">
+        <div class="header-glow"></div>
+        <h1 class="game-title">
+            <span class="title-emoji">✊</span>
+            <span class="title-text">Game <span class="highlight">Suit</span></span>
+            <span class="title-emoji">✌️</span>
+        </h1>
+        <p class="game-subtitle">Batu · Gunting · Kertas</p>
+    </header>
+
+    <!-- Score Board -->
+    <section class="scoreboard" id="scoreboard" aria-label="Papan Skor">
+        <div class="score-card score-card--player" id="score-card-player">
+            <div class="score-avatar">
+                <img src="img/orang.jpg" alt="Player Avatar" class="avatar-img" id="avatar-player">
+                <div class="avatar-ring"></div>
+                <div class="status-dot status-dot--player"></div>
+            </div>
+            <div class="score-info">
+                <span class="score-label">Player</span>
+                <div class="score-number-wrap">
+                    <span class="score-number" id="score-player">0</span>
+                </div>
+            </div>
+            <div class="score-streak" id="streak-player" title="Streak kemenangan berturut-turut"></div>
         </div>
-        <div class="info"></div>
-        <div class="area-player">
-            <h2 class="score-player">0</h2>
-            <ul>
-                <li>
-                    <img src="img/batu.png" class="batu">
-                </li>
-                <li>
-                    <img src="img/kertas.png" class="kertas">
-                </li>
-                <li>
-                    <img src="img/gunting.png" class="gunting">
-                </li>
-            </ul>
+
+        <div class="score-vs-block">
+            <div class="vs-badge">VS</div>
+            <div class="round-counter">
+                <span class="round-label">Ronde</span>
+                <span class="round-number" id="round-counter">0</span>
+            </div>
+        </div>
+
+        <div class="score-card score-card--computer" id="score-card-computer">
+            <div class="score-info score-info--right">
+                <span class="score-label">Komputer</span>
+                <div class="score-number-wrap">
+                    <span class="score-number" id="score-computer">0</span>
+                </div>
+            </div>
+            <div class="score-avatar">
+                <img src="img/com.jpg" alt="Computer Avatar" class="avatar-img" id="avatar-computer">
+                <div class="avatar-ring avatar-ring--red"></div>
+                <div class="status-dot status-dot--computer"></div>
+            </div>
+            <div class="score-streak score-streak--right" id="streak-computer" title="Streak kemenangan berturut-turut"></div>
+        </div>
+    </section>
+
+    <!-- Battle Arena -->
+    <main class="battle-arena" id="battle-arena" aria-label="Area Pertarungan">
+
+        <!-- Computer Side -->
+        <div class="arena-side arena-side--computer" id="arena-computer">
+            <div class="arena-label">
+                <span class="arena-label-icon">🤖</span>
+                <span>Komputer</span>
+            </div>
+            <div class="choice-display" id="computer-display">
+                <img src="img/batu.png" alt="Pilihan Komputer" class="choice-img" id="img-komputer">
+                <div class="choice-glow choice-glow--computer"></div>
+            </div>
+        </div>
+
+        <!-- Battle Info Center -->
+        <div class="arena-center">
+            <div class="battle-info" id="battle-info">
+                <div class="battle-info-icon" id="battle-info-icon">⚔️</div>
+                <div class="battle-info-text" id="battle-info-text">Pilih senjatamu!</div>
+            </div>
+            <div class="divider-line"></div>
+        </div>
+
+        <!-- Player Side -->
+        <div class="arena-side arena-side--player" id="arena-player">
+            <div class="arena-label">
+                <span class="arena-label-icon">👤</span>
+                <span>Player</span>
+            </div>
+            <div class="choice-display" id="player-display">
+                <img src="img/batu.png" alt="Pilihan Player" class="choice-img" id="img-player" style="opacity:0.3; filter: grayscale(1);">
+                <div class="choice-glow choice-glow--player"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Player Controls -->
+    <section class="controls" id="controls" aria-label="Kontrol Pilihan">
+        <p class="controls-hint" id="controls-hint">
+            <span class="hint-pulse">●</span> Klik senjatamu untuk mulai!
+        </p>
+        <ul class="choice-list" role="list">
+            <li class="choice-item" id="choice-batu">
+                <button class="choice-btn" data-choice="batu" id="btn-batu" aria-label="Pilih Batu">
+                    <div class="choice-btn-glow"></div>
+                    <img src="img/batu.png" alt="Batu" class="choice-btn-img batu">
+                    <span class="choice-btn-label">✊ Batu</span>
+                    <div class="choice-btn-ring"></div>
+                </button>
+            </li>
+            <li class="choice-item" id="choice-kertas">
+                <button class="choice-btn" data-choice="kertas" id="btn-kertas" aria-label="Pilih Kertas">
+                    <div class="choice-btn-glow"></div>
+                    <img src="img/kertas.png" alt="Kertas" class="choice-btn-img kertas">
+                    <span class="choice-btn-label">✋ Kertas</span>
+                    <div class="choice-btn-ring"></div>
+                </button>
+            </li>
+            <li class="choice-item" id="choice-gunting">
+                <button class="choice-btn" data-choice="gunting" id="btn-gunting" aria-label="Pilih Gunting">
+                    <div class="choice-btn-glow"></div>
+                    <img src="img/gunting.png" alt="Gunting" class="choice-btn-img gunting">
+                    <span class="choice-btn-label">✌️ Gunting</span>
+                    <div class="choice-btn-ring"></div>
+                </button>
+            </li>
+        </ul>
+        <button class="reset-btn" id="reset-btn" aria-label="Reset Skor">
+            🔄 Reset Skor
+        </button>
+    </section>
+
+    <!-- Win Toast Notification -->
+    <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+    <!-- Result Modal (Win/Lose at 5 points) -->
+    <div class="result-modal" id="result-modal" role="dialog" aria-modal="true" aria-label="Hasil Pertandingan">
+        <div class="result-modal-content">
+            <div class="result-trophy" id="result-trophy">🏆</div>
+            <h2 class="result-title" id="result-title">Player Menang!</h2>
+            <p class="result-desc" id="result-desc">Kamu berhasil mengalahkan komputer 5 kali!</p>
+            <div class="result-actions">
+                <button class="result-btn result-btn--primary" id="modal-play-again">🎮 Main Lagi</button>
+                <button class="result-btn result-btn--secondary" id="modal-close">✖ Tutup</button>
+            </div>
         </div>
     </div>
+    <div class="modal-backdrop" id="modal-backdrop"></div>
 
     <script src="scripts.js"></script>
 </body>
