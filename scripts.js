@@ -111,7 +111,7 @@ let roundCount    = 0;
 let streakPlayer  = 0;
 let streakComp    = 0;
 let isAnimating   = false;
-const WIN_SCORE   = 5; // Kemenangan di ronde ke berapa modal muncul
+const WIN_SCORE   = 10; // Kemenangan di ronde ke berapa modal muncul
 
 // --- DOM Elements ---
 const imgKomputer    = document.getElementById('img-komputer');
